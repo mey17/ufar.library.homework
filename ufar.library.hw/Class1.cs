@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ufar.library.hw;
@@ -29,7 +30,7 @@ namespace ufar.library.hw
         }
 
        
-        public static Book CreatenewBook()
+        public static Book CreateNewBook()
         {
 
             Console.WriteLine("Enter Book's Title: ");
@@ -54,14 +55,18 @@ namespace ufar.library.hw
             
                 switch (answer)
                 {
+                    
                     case 0:
-                        category.CategoryName = "Adventure";
+                        category.CategoryName = CategoryName.Adventure;
+                        category.Description = "Adventure books feature fast-paced \n and action-packet plots, and a hero that has to \n complete an unexpected quest or journey in a \n short period of time. ";
                         break;
                     case 1:
-                        category.CategoryName = "Horror";
+                        category.CategoryName = CategoryName.Horror;
+                        category.Description = "horror story, a story in which the focus is on creating a feeling of fear. Such tales\n are of ancient origin and form a substantial part \nof the body of folk literature.";
                         break;
                     case 2:
-                        category.CategoryName = "Comedy";
+                        category.CategoryName = CategoryName.Comedy;
+                        category.Description = "Sarcasm, irony, parody, and innuendo kick in for audiences around 12-15. After 15, pretty much anything goes,\n allowing you to set up more complex humor writing like \n elaborate running gags, self-reflexive jokes,\n running gags, self-reflexive jokes, or even running gags.";
                         break;
                     default:
                         Console.WriteLine("Wrong answer!!!!!");
@@ -69,9 +74,9 @@ namespace ufar.library.hw
                         break;
                 }
             } while (!check);
-            Console.WriteLine("Enter Category Description: ");
-            string categoryDescription = Console.ReadLine();
-            category.Description = categoryDescription;
+            
+            
+             
             Console.WriteLine("Enter Book's Year: ");
             int year = int.Parse(Console.ReadLine());
 
@@ -97,36 +102,57 @@ namespace ufar.library.hw
     }
 
 class Library
-{
+{   
     private List<Book> books = new List<Book>();
+    
     public void AddBook(Book book)
     {
         books.Add(book);
+
     }
     public void ListAllBooks()
     {
         Console.WriteLine("List of all books:");
         foreach (var book in books)
         {
-            Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author.Name}, Category: {book.Category.CategoryName}, Year: {book.Year}, Price: {book.Price}");
+            Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author.Name},\n Category: {book.Category.CategoryName},Category Description: {book.Category.Description},\n Year: {book.Year},\n Price: {book.Price}\n");
         }
     }
+
 }
 
+
     class Author
-    {
+    {   
         public string Name;
         public string Biography;
+    
+ 
+        
+
+    public Author(string name, string bio) {
+
+        Name = name;
+        Biography = bio;
     }
+
+    private List<Author> authors = new List<Author>();
+    
+}
 enum CategoryName
 {
     Adventure,
     Horror,
     Comedy
 }
+
+enum Description
+{
+
+}
 class Category
 {
-        public string CategoryName;
+        public dynamic CategoryName;
         public string Description;
     
  }

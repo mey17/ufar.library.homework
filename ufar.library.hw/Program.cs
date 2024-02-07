@@ -9,37 +9,40 @@ namespace ufar.library.hw
 
     
     
-    internal class Library
+    internal class Program
     {
         static void Main(string[] args)
         {
-            //var lolita = new Book("Lolita", new Author { Name = "Vladimir Nabokov", Biography = ":)" },
-            //          new Category { CategoryName = "Horror", Description = "lkjhgfdsadfghjkl" },
-            //          1998, 25);
-
+            var author = new Author("Kuku", "blalalalalla");
+            
+            var lolita = new Book("Lolita", new Author { Name = "Vladimir Nabokov", Biography = ":)" },
+                      new Category { CategoryName = "Horror", Description = "lkjhgfdsadfghjkl" },
+                      1998, 25);
+            
             int answer;
-            Console.WriteLine("\t Hello, Welcome to the Ufar's Library");
+            Library l = new Library();
+            l.AddBook(lolita);
+            Console.WriteLine("Hello, Welcome to the Ufar's Library");
             do
             {
+                Console.WriteLine("\t ****");
                 Console.WriteLine("{1} Add Book ");
                 Console.WriteLine("{2} Remove Book ");
                 Console.WriteLine("{3} List All Books ");
                 Console.WriteLine("{0} exit ");
                 Console.Write("Please choose the action: ");
                 answer = int.Parse(Console.ReadLine());
-                Library library = new Library();
-
-
+                
+                
                 switch (answer)
                 {
-
                     case 1:
-                        library.AddBook(Book.CreateBook());
+                        l.AddBook(Book.CreateNewBook());
                         break;
                     case 2:
                         break;
                     case 3:
-                        library.ListAllBooks();
+                        l.ListAllBooks();
                         break;
                 }
             } while (answer != 0);
